@@ -95,9 +95,14 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
     - Backend
         - sqlalchemy in flask
             - https://www.youtube.com/watch?v=FEyNt9iFPGc&list=PLXmMXHVSvS-BlLA5beNJojJLlpE0PJgCW&index=2
+            - https://www.youtube.com/playlist?list=PLLXm9VyNhEPQ5mmnaRNPsoAW-GpPnEONO
+            - https://www.youtube.com/watch?v=AKQ3XEDI9Mw
     - Frontend
         - Vue js
             - https://www.youtube.com/watch?v=F7PLPJqVotk&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1&index=2
+    - Example
+        - https://www.youtube.com/watch?v=msEmUtYqVV0
+        - https://herbzhao.medium.com/vue-js-flask-flask-sqlalchemy-6a85a67a7790
 
 # laptop
 https://www.bnn.in.th/th/p/notebook/notebook-by-brands/hp-notebook-by-brands?in_stock=true&sort_by=relevance&page=1&attributes=processor%3Aintel-core-i7-12700h
