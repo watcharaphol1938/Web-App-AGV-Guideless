@@ -1,2 +1,2 @@
 del mydb.db
-python app.py
+python main.py
