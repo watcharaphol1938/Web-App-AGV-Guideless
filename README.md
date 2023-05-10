@@ -104,9 +104,12 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
         - node js
         - npm install -g @vue/cli
         - vue create project
+        - vue create reaction-timer
+        - vue create web-form
     - Example
         - https://www.youtube.com/watch?v=msEmUtYqVV0
         - https://herbzhao.medium.com/vue-js-flask-flask-sqlalchemy-6a85a67a7790
+        - https://www.youtube.com/watch?v=nCMB5p74WJQ
 
 # laptop
 https://www.bnn.in.th/th/p/notebook/notebook-by-brands/hp-notebook-by-brands?in_stock=true&sort_by=relevance&page=1&attributes=processor%3Aintel-core-i7-12700h
