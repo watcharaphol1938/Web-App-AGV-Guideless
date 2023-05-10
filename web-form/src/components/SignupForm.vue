@@ -1,10 +1,11 @@
 <template>
   <div>
-    <form>
+    <form @submit.prevent="handleSubmit">
       <label>Email</label>
       <input type="email" required v-model="email" />
       <label>Password</label>
       <input type="password" required v-model="password" />
+      <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
       <!-- select box -->
       <label>Role:</label>
@@ -64,6 +65,7 @@ export default {
       //   names: []
       tempSkills: "",
       skills: [],
+      passwordError: ''
     };
   },
   methods: {
@@ -83,6 +85,18 @@ export default {
             // return false
             return skill !== item
         })
+    },
+    handleSubmit() {
+        // console.log('form submitted')
+        // validate password
+        this.passwordError = this.password.length > 5 ? '' : 'password must be at least 7 chars long'
+        if (!this.passwordError) {
+            console.log('email: ', this.email)
+            console.log('password: ', this.password)
+            console.log('role: ', this.role)
+            console.log('skills: ', this.skills)
+            console.log('accept: ', this.accept)
+        }
     }
   },
 };
@@ -145,5 +159,11 @@ button {
 }
 .submit {
     text-align: center;
+}
+.error {
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 </style>
