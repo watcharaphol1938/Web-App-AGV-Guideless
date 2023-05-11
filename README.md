@@ -98,6 +98,11 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
             - https://www.youtube.com/playlist?list=PLLXm9VyNhEPQ5mmnaRNPsoAW-GpPnEONO
             - https://www.youtube.com/watch?v=AKQ3XEDI9Mw
         - pip install sqlalchemy
+        - pip install Flask
+        - pip install Flask-SQLAlchemy
+        - pip install mysqlclient
+        - pip install flask-marshmallow
+        - pip install marshmallow-sqlalchemy
     - Frontend
         - Vue js
             - https://www.youtube.com/watch?v=F7PLPJqVotk&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1&index=2
