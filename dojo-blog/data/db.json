@@ -1,0 +1,24 @@
+{
+    "posts": [
+        {
+            "title": "Eufa champions league",
+            "body": "semi-final",
+            "id": 1,
+            "tags": [
+                "dev",
+                "coding",
+                "html"
+            ]
+        },
+        {
+            "title": "Eufa Europa league",
+            "body": "quater-final",
+            "id": 2,
+            "tags": [
+                "python",
+                "javascript",
+                "css"
+            ]
+        }
+    ]
+}
