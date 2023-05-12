@@ -2,12 +2,14 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 from flask_marshmallow import Marshmallow
+# from flask_cors import CORS
 
 app = Flask(__name__)
+# CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/flask'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/amrdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.app_context()
+app.app_context().push()
 
 db = SQLAlchemy(app)
 marsh = Marshmallow(app)
@@ -16,16 +18,21 @@ class Articles(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(100))
     body = db.Column(db.Text())
-    # date = db.Column(db.DateTime, default = datetime.datetime.now)
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
 
     def __init__(self, title, body):
         self.title = title
         self.body = body
 
 
+# @app.route('/get', methods = ['GET'])
+# def get_articles():
+#     return jsonify({"Hello":"Sam"})
+
+
 class ArticleSchema(marsh.Schema):
     class Meta:
-        fields = ('id', 'title', 'body')
+        fields = ('id', 'title', 'body', 'date')
 
 
 article_schema = ArticleSchema()
