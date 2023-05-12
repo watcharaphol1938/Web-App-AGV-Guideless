@@ -103,6 +103,7 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
         - pip install mysqlclient
         - pip install flask-marshmallow
         - pip install marshmallow-sqlalchemy
+        - pip install Flask-Cors
     - Frontend
         - Vue js
             - https://www.youtube.com/watch?v=F7PLPJqVotk&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1&index=2
@@ -114,6 +115,7 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
         - vue create ninja-jobs
         - npm install json-server
         - json-server --watch data/db.json
+        - npm install vue-router@4
     - Example
         - https://www.youtube.com/watch?v=msEmUtYqVV0
         - https://herbzhao.medium.com/vue-js-flask-flask-sqlalchemy-6a85a67a7790
