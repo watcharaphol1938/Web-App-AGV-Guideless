@@ -116,6 +116,7 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
         - npm install json-server
         - json-server --watch data/db.json
         - npm install vue-router@4
+        - npm install bootstrap jquery popper.js
     - Example
         - https://www.youtube.com/watch?v=msEmUtYqVV0
         - https://herbzhao.medium.com/vue-js-flask-flask-sqlalchemy-6a85a67a7790
