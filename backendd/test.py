@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
-import datetime
+import datetime, requests, json
 from flask_marshmallow import Marshmallow
 # from flask_cors import CORS
 
@@ -15,8 +15,26 @@ app.app_context().push()
 db = SQLAlchemy(app)
 marsh = Marshmallow(app)
 
+r = requests.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json")
+
 
 # Structure -------------------------------------------------------------------------------------------
+
+# Task -------------------------------------------------------------------------------------------
+
+class Task(db.Model):
+    __tablename__ = "task"
+    task_id = db.Column(db.Integer, primary_key = True)
+    task_name = db.Column(db.String(response.name_th))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, task_name):
+        self.task_name = task_name
+
+class TaskSchema(marsh.Schema):
+    class Meta:
+        fields = ('task_name', 'date')
+
 # Country --------------------------------------------------------------
 class Countries(db.Model):
     __tablename__ = "country"
@@ -41,6 +59,7 @@ def get_countries():
     all_countries = Countries.query.all()
     result = countries_schema.dump(all_countries)
     return jsonify(result)
+    # return {'result':'ok'}
 
 
 @app.route('/get/<id>/', methods = ['GET'])
