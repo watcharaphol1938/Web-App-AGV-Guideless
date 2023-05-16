@@ -1,51 +1,63 @@
-import requests, json
-from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
-import datetime
-from flask_marshmallow import Marshmallow
+import pymysql, requests, json
 
+mydb = pymysql.connect(
+    host="127.0.0.1",
+    user="root",
+    # port= 5000,
+    password="",
+    database="amrdb"
+)
 
-app = Flask(__name__)
+mycursor = mydb.cursor()
 
+api = requests.get("https://raw.githubusercontent.com/jkaninda/world-countries/master/countries.json")
+data = json.loads(api.text)
+for i in data:
+    if "id" in i:
+        id = i["id"]
+    else:
+        id = 0
+    if "name" in i:
+        name = i["name"]
+    else:
+        name = ""
+    print(id, " : " ,name)
+#     if "id" in i:
+#         partnumber = "T" + str(1000 + i["id"])
+#     else:
+#         partnumber = str(0)
+#     if "name_th" in i:
+#         name_th = i["name_th"]
+#     else:
+#         name_th = str(0)
+#     sql = "INSERT INTO task (name_en, name_th, partnumber) VALUES (%s, %s, %s)"
+#     mycursor.execute(sql, (name_en, name_th, partnumber))
+#     mydb.commit()
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/amrdb'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.app_context().push()
-
-db = SQLAlchemy(app)
-marsh = Marshmallow(app)
 
 res = requests.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json")
 list = json.loads(res.text)
 # print(list)
 
-newList = []
-for i in list:
-    if 'id' in i:
-        id = i['id']
-    else:
-        id = 0
-    if 'name_en' in i:
-        name = i['name_en']
-    else:
-        name = ''
+# TaskTable = "CREATE TABLE Task(ID INT PRIMARY KEY AUTO_INCREMENT, NAME_TH CHAR(50) NOT NULL, NAME_EN CHAR(50) NOT NULL, PARTNUMBER CHAR(50) NOT NULL)"
+# mycursor.execute(TaskTable)
+# mydb.commit()
 
-    store = {
-        ['id']: id,
-        ['name'] : name
-    }
-    newList.append(store)
+# for i in list:
+#     if "name_en" in i:
+#         name_en = i["name_en"]
+#     else:
+#         name_en = ""
+#     if "id" in i:
+#         partnumber = "T" + str(1000 + i["id"])
+#     else:
+#         partnumber = str(0)
+#     if "name_th" in i:
+#         name_th = i["name_th"]
+#     else:
+#         name_th = str(0)
+#     sql = "INSERT INTO task (name_en, name_th, partnumber) VALUES (%s, %s, %s)"
+#     mycursor.execute(sql, (name_en, name_th, partnumber))
+#     mydb.commit()
 
-# print(newList)
-
-sql = "insert into amrdb (id, name)"
-value = []
-for i in newList:
-    val = (i['id'], i['name'])
-    value.append(val)
-
-db.session.add(value)
-db.session.commit()
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# mydb.close()

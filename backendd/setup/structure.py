@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
-import datetime
+import datetime, json, pymysql, requests
 from flask_marshmallow import Marshmallow
 # from flask_cors import CORS
 
@@ -14,6 +14,19 @@ app.app_context().push()
 
 db = SQLAlchemy(app)
 marsh = Marshmallow(app)
+
+
+class Tasks(db.Model):
+    __tablename__ = "task"
+    task_id = db.Column(db.Integer, primary_key = True)
+    task_name = db.Column(db.String(100))
+    part_number = db.Column(db.String(100))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, task_name, part_number):
+        self.task_name = task_name
+        self.part_number = part_number
+
 
 class Countries(db.Model):
     __tablename__ = "country"
