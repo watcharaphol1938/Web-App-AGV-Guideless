@@ -1,4 +1,16 @@
-from setup.structure import marsh, jsonify, app, request, Provinces, db
+from setup.structure import db, ForeignKey, datetime, marsh, app, jsonify, request
+
+
+class Provinces(db.Model):
+    __tablename__ = "province"
+    province_id = db.Column(db.Integer, primary_key = True)
+    province_name = db.Column(db.String(100))
+    country_id = db.Column(db.Integer, ForeignKey("country.country_id"))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, province_name, country_id):
+        self.province_name = province_name
+        self.country_id = country_id
 
 class ProvinceSchema(marsh.Schema):
     class Meta:

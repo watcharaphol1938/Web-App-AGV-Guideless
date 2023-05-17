@@ -1,35 +1,67 @@
-from setup.structure import json, pymysql, requests
+from setup.structure import db, datetime, pymysql, requests, json, app, request, jsonify, marsh
 
 
-mydb = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    # port= 5000,
-    password="",
-    database="amrdb"
-)
+class Tasks(db.Model):
+    __tablename__ = "task"
+    task_id = db.Column(db.Integer, primary_key = True)
+    task_name = db.Column(db.String(100))
+    part_number = db.Column(db.String(100))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
 
-mycursor = mydb.cursor()
+    def __init__(self, task_name, part_number):
+        self.task_name = task_name
+        self.part_number = part_number
 
-res = requests.get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json")
-list = json.loads(res.text)
-# print(list)
 
-TaskTable = "CREATE TABLE Task(ID INT PRIMARY KEY AUTO_INCREMENT, NAME CHAR(100) NOT NULL, PARTNUMBER CHAR(50) NOT NULL)"
-mycursor.execute(TaskTable)
-mydb.commit()
+class TaskSchema(marsh.Schema):
+    class Meta:
+        fields = ('task_name', 'part_number', 'date')
 
-for i in list:
-    if "name" in i:
-        name = i["name"]
-    else:
-        name = ""
-    if "id" in i:
-        partnumber = "T" + str(1000 + i["id"])
-    else:
-        partnumber = str(0)
-    sql = "INSERT INTO task (name, partnumber) VALUES (%s, %s)"
-    mycursor.execute(sql, (name, partnumber))
-    mydb.commit()
 
-mydb.close()
+task_schema = TaskSchema()
+tasks_schema = TaskSchema(many=True)
+
+
+@app.route('/get', methods = ['GET'])
+def get_tasks():
+    all_tasks = Tasks.query.all()
+    result = tasks_schema.dump(all_tasks)
+    return jsonify(result)
+    # return {'result':'ok'}
+
+
+@app.route('/get/<id>/', methods = ['GET'])
+def post_task_details(id):
+    task = Tasks.query.get(id)
+    return task_schema.jsonify(task)
+
+
+@app.route('/add', methods = ['POST'])
+def get_task():
+    task_name = request.json['task_name']
+
+    tasks = Tasks(task_name)
+    db.session.add(tasks)
+    db.session.commit()
+    return task_schema.jsonify(tasks)
+
+
+@app.route('/update/<id>/', methods = ['PUT'])
+def update_task(id):
+    task = Tasks.query.get(id)
+
+    task_name = request.json['task_name']
+
+    task.country_name = task_name
+
+    db.session.commit()
+    return task_schema.jsonify(task)
+
+
+@app.route('/delete/<id>/', methods = ['DELETE'])
+def task_delete(id):
+    task = Tasks.query.get(id)
+    db.session.delete(task)
+    db.session.commit()
+
+    return task_schema.jsonify(task)

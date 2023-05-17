@@ -1,4 +1,16 @@
-from setup.structure import marsh, jsonify, app, request, Processes, db
+from setup.structure import db, ForeignKey, datetime, marsh, app, jsonify, request
+
+
+class Processes(db.Model):
+    __tablename__ = "process"
+    process_id = db.Column(db.Integer, primary_key = True)
+    process_name = db.Column(db.String(100))
+    plant_id = db.Column(db.Integer, ForeignKey("plant.plant_id"))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, process_name, plant_id):
+        self.process_name = process_name
+        self.plant_id = plant_id
 
 
 class ProcessSchema(marsh.Schema):

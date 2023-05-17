@@ -1,5 +1,16 @@
-from setup.structure import marsh, jsonify, app, request, Plants, db
+from setup.structure import db, ForeignKey, datetime, marsh ,app, jsonify, request
 
+
+class Plants(db.Model):
+    __tablename__ = "plant"
+    plant_id = db.Column(db.Integer, primary_key = True)
+    plant_name = db.Column(db.String(100))
+    province_id = db.Column(db.Integer, ForeignKey("province.province_id"))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, plant_name, province_id):
+        self.plant_name = plant_name
+        self.province_id = province_id
 
 class PlantSchema(marsh.Schema):
     class Meta:

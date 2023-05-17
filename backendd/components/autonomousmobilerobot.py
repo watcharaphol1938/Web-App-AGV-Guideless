@@ -1,5 +1,16 @@
-from setup.structure import marsh, jsonify, app, request, AutonomousMobileRobots, db
+from setup.structure import db, ForeignKey, datetime, marsh, app, jsonify, request
 
+
+class AutonomousMobileRobots(db.Model):
+    __tablename__ = "autonomousmobilerobot"
+    autonomousmobilerobot_id = db.Column(db.Integer, primary_key = True)
+    autonomousmobilerobot_name = db.Column(db.String(100))
+    processline_id = db.Column(db.Integer, ForeignKey("processline.processline_id"))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, autonomousmobilerobot_name, processline_id):
+        self.autonomousmobilerobot_name = autonomousmobilerobot_name
+        self.plant_id = processline_id
 
 class AutonomousMobileRobotSchema(marsh.Schema):
     class Meta:
@@ -35,7 +46,7 @@ def get_autonomousmobilerobot():
 
 
 @app.route('/update/<id>/', methods = ['PUT'])
-def update_process(id):
+def update_autonomousmobilerobot(id):
     autonomousmobilerobot = AutonomousMobileRobots.query.get(id)
 
     autonomousmobilerobot_name = request.json['autonomousmobilerobot_name']
@@ -49,7 +60,7 @@ def update_process(id):
 
 
 @app.route('/delete/<id>/', methods = ['DELETE'])
-def process_delete(id):
+def process_autonomousmobilerobot(id):
     autonomousmobilerobot = AutonomousMobileRobots.query.get(id)
     db.session.delete(autonomousmobilerobot)
     db.session.commit()
