@@ -117,6 +117,13 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
         - json-server --watch data/db.json
         - npm install vue-router@4
         - npm install bootstrap jquery popper.js
+    - test api
+        - https://raw.githubusercontent.com/jkaninda/world-countries/master/countries.json
+        - https://raw.githubusercontent.com/amrsaeedhosny/countries/main/countries.json
+        - https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json
+        - https://raw.githubusercontent.com/rolandspps/Countries-States-Cities/master/countries.json
+        - https://raw.githubusercontent.com/rolandspps/Countries-States-Cities/master/cities.json
+        - https://raw.githubusercontent.com/gazra-labs/all-countries-names/master/abbr.json
     - Example
         - https://www.youtube.com/watch?v=msEmUtYqVV0
         - https://herbzhao.medium.com/vue-js-flask-flask-sqlalchemy-6a85a67a7790

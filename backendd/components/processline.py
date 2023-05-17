@@ -1,4 +1,16 @@
-from setup.structure import marsh, jsonify, app, request, ProcessLines, db
+from setup.structure import db, ForeignKey, datetime, marsh, app, jsonify, request
+
+
+class ProcessLines(db.Model):
+    __tablename__ = "processline"
+    processline_id = db.Column(db.Integer, primary_key = True)
+    processline_name = db.Column(db.String(100))
+    process_id = db.Column(db.Integer, ForeignKey("process.process_id"))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, processline_name, process_id):
+        self.processline_name = processline_name
+        self.plant_id = process_id
 
 
 class ProcessLineSchema(marsh.Schema):
@@ -35,7 +47,7 @@ def get_processline():
 
 
 @app.route('/update/<id>/', methods = ['PUT'])
-def update_process(id):
+def update_processline(id):
     processline = ProcessLines.query.get(id)
 
     processline_name = request.json['processline_name']
@@ -49,7 +61,7 @@ def update_process(id):
 
 
 @app.route('/delete/<id>/', methods = ['DELETE'])
-def process_delete(id):
+def processline_delete(id):
     processline = ProcessLines.query.get(id)
     db.session.delete(processline)
     db.session.commit()

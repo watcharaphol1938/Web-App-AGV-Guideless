@@ -1,4 +1,14 @@
-from setup.structure import marsh, jsonify, app, request, Countries, db
+from setup.structure import db, datetime, marsh, app, jsonify, request
+
+
+class Countries(db.Model):
+    __tablename__ = "country"
+    country_id = db.Column(db.Integer, primary_key = True)
+    country_name = db.Column(db.String(100))
+    date = db.Column(db.DateTime, default = datetime.datetime.now)
+
+    def __init__(self, country_name):
+        self.country_name = country_name
 
 
 class CountrySchema(marsh.Schema):
