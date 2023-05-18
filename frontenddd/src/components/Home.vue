@@ -26,7 +26,7 @@ export default {
   methods: {
     getArticles() {
       fetch('http://127.0.0.1:5000/get', {
-        methods:"GET",
+        method:"GET",
         headers: {
           "Content-Type" : "application/json"
         }
