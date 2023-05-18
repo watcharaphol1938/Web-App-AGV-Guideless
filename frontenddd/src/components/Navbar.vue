@@ -23,15 +23,7 @@
           </li>
           <li class="nav-item mx-2">
             <!-- <a class="nav-link" href="#">Features</a> -->
-            <router-link class="btn" to="/create">Dashbord</router-link>
-          </li>
-          <li class="nav-item mx-2">
-            <!-- <a class="nav-link" href="#">Features</a> -->
-            <router-link class="btn" to="/create">Analytics</router-link>
-          </li>
-          <li class="nav-item mx-2">
-            <!-- <a class="nav-link" href="#">Features</a> -->
-            <router-link class="btn" to="/create">About us</router-link>
+            <router-link class="btn" to="/create">Create</router-link>
           </li>
         </ul>
       </div>
