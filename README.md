@@ -84,6 +84,7 @@ https://www.techinpost.com/an-attempt-was-made-to-access-a-socket-in-a-way-forbi
 
 # Step
 https://www.sc-sparksolution.com/2021/05/11/%e0%b8%a3%e0%b8%a7%e0%b8%a1-5-%e0%b8%82%e0%b8%b1%e0%b9%89%e0%b8%99%e0%b8%95%e0%b8%ad%e0%b8%99%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b8%9e%e0%b8%b1%e0%b8%92%e0%b8%99%e0%b8%b2%e0%b9%81%e0%b8%ad%e0%b8%9b/
+# https://unique-dev.net/login.aspx?cmd=0 : MR.Paiwan : P@ssw0rd
     - Tools
         - Node JS
         - VS Code
