@@ -5,6 +5,7 @@ from components.process import app, db
 from components.processline import app, db
 from components.autonomousmobilerobot import app, db
 from components.task import app, db
+from components.user import app, db
 
 
 db.session.commit()
