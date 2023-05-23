@@ -6,6 +6,8 @@ from components.processline import app, db
 from components.autonomousmobilerobot import app, db
 from components.task import app, db
 from components.user import app, db
+from components.equipment import app, db
+from components.tag import app, db
 
 
 db.session.commit()
