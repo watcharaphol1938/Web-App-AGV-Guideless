@@ -8,6 +8,8 @@ from components.task import app, db
 from components.user import app, db
 from components.equipment import app, db
 from components.tag import app, db
+from components.machine import app, db
+from components.parameter import app, db
 
 
 db.session.commit()
